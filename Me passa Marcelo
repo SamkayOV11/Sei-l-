@@ -1,0 +1,61 @@
+
+let medias = [];
+let opcao;
+
+do {
+    console.log("\n===== CALCULADORA DE MÉDIA =====");
+    console.log("1 - Cadastrar média");
+    console.log("2 - Listar médias");
+    console.log("0 - Encerrar");
+
+    opcao = Number(prompt("Escolha uma opção:"));
+
+    switch (opcao) {
+        case 1:
+            let nota1 = Number(prompt("Digite a primeira nota:"));
+            let nota2 = Number(prompt("Digite a segunda nota:"));
+
+            if (
+                isNaN(nota1) || isNaN(nota2) ||
+                nota1 < 0 || nota1 > 10 ||
+                nota2 < 0 || nota2 > 10
+            ) {
+                console.log("Notas inválidas! Digite valores entre 0 e 10.");
+            } else {
+                let media = (nota1 + nota2) / 2;
+                medias.push(media);
+
+                console.log("Média calculada:", media.toFixed(2));
+
+                if (media >= 7) {
+                    console.log("Situação: Aprovado!");
+                } else {
+                    console.log("Situação: Reprovado!");
+                }
+            }
+            break;
+
+        case 2:
+            if (medias.length === 0) {
+                console.log("Nenhuma média cadastrada.");
+            } else {
+                console.log("\n===== MÉDIAS CADASTRADAS =====");
+
+                for (let i = 0; i < medias.length; i++) {
+                    console.log(
+                        `Média ${i + 1}: ${medias[i].toFixed(2)}`
+                    );
+                }
+            }
+            break;
+
+        case 0:
+            console.log("Programa encerrado. Até logo!");
+            break;
+
+        default:
+            console.log("Opção inválida! Tente novamente.");
+            break;
+    }
+
+} while (opcao !== 0);
